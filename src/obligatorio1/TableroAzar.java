@@ -8,7 +8,7 @@ public class TableroAzar {
     public static char[][] generarTablero(int filas, int columnas, int nivel) {
         char[][] tablero = new char[filas][columnas];
         Random random = new Random();
-        char [][] predeterminado = {{'|', '|', '-', '/', '|', '-'},{'-', '/', '/', '|', '-', '-'},{'-', '-', '|', '-', '/', '-'},{'\\', '-', '|', '\\', '|', '|'},{'\\', '/', '/', '|', '/', '\\'}};
+        char [][] predefinido = {{'|', '|', '-', '/', '|', '-'},{'-', '/', '/', '|', '-', '-'},{'-', '-', '|', '-', '/', '-'},{'\\', '-', '|', '\\', '|', '|'},{'\\', '/', '/', '|', '/', '\\'}};
         // Inicializar el tablero con símbolos aleatorios
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {

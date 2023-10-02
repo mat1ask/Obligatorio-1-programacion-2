@@ -19,7 +19,7 @@ public class Obligatorio1 {
     int opcion = 0;
     
     if(respuesta.toLowerCase().equals("si")){
-            System.out.println("\n-----------------------------");
+            System.out.println("\n-----------------------------------------------------------");
             System.out.println("1)Tomar datos del archivo");
             System.out.println("2)Usar el tablero predefinido");
             System.out.println("3)Usar un tablero al azar");
@@ -30,12 +30,14 @@ public class Obligatorio1 {
                 break;
                 case 2:
                     System.out.println("Seleccionaste el tablero predefinido");
+                    char [][] predefinido = {{'|', '|', '-', '/', '|', '-'},{'-', '/', '/', '|', '-', '-'},{'-', '-', '|', '-', '/', '-'},{'\\', '-', '|', '\\', '|', '|'},{'\\', '/', '/', '|', '/', '\\'}};
+                    System.out.println(predefinido);
                 break;
                 case 3:
                     System.out.println("Seleccionaste el tablero al azar");
-                    int filas = pedirEntero("\nEliga la cantidad de filas del tablero",3,9);
-                    int columnas = pedirEntero("\nEliga la cantidad de columnas del tablero",3,9);
-                    int nivel = pedirEntero("\nEliga el nivel del juego",1,8);
+                    int filas = pedirEntero("\nEliga la cantidad de filas del tablero: ",3,9);
+                    int columnas = pedirEntero("\nEliga la cantidad de columnas del tablero: ",3,9);
+                    int nivel = pedirEntero("\nEliga el nivel del juego: ",1,8);
                 break;
             }
     

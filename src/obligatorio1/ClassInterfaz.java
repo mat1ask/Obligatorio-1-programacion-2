@@ -22,6 +22,8 @@ public class ClassInterfaz {
                 break;
                 case 2:
                     System.out.println("Seleccionaste el tablero predefinido");
+                    char [][] predefinido = {{'|', '|', '-', '/', '|', '-'},{'-', '/', '/', '|', '-', '-'},{'-', '-', '|', '-', '/', '-'},{'\\', '-', '|', '\\', '|', '|'},{'\\', '/', '/', '|', '/', '\\'}};
+                    System.out.println(predefinido);
                 break;
                 case 3:
                     System.out.println("Seleccionaste el tablero al azar");
