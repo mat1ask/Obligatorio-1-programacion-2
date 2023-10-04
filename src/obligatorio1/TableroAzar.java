@@ -1,6 +1,6 @@
 package obligatorio1;
 
-import java.util.Random;
+import java.util.*;
 
 public class TableroAzar {
 
@@ -9,14 +9,29 @@ public class TableroAzar {
     private int dificultad;
     private String solucion;
     private String[][] tablero;
+    private ArrayList<String> movimientos;
     
     //Asignar el tablero predeterminado:
     public TableroAzar(){
         this.filas = 5;
         this.columnas = 6;
         this.dificultad = 3;
-        this.tablero = new String[][] { {"|A" , "-R" , "-R" , "\\R" , "\\R"} , {"|A" , "/A" , "-R" , "-R" , "/R"} , {"-R" , "/A" , "|A" , "|R" , "/R"} , {"/A" , "|A" , "-R" , "\\R" , "|A"} , {"|R" , "-R" , "/R" , "|A" , "/A"} , {"-R" , "-R" , "-R" , "|R" , "\\A"} };
-        this.solucion = "(4,4) (5,6) (5,4)";
+        this.tablero = new String[][] { 
+            {"|A" , "|A" , "-R" , "/A" , "|R" , "-R"} ,
+            {"-R" , "/A" , "/A" , "|A" , "-R" , "-R"} ,
+            {"-R" , "-R" , "|A" , "-R" , "/R" , "-R"} ,
+            {"\\R" , "-R" , "|R" , "\\R" , "|A" , "|R"} ,
+            {"\\R" , "/R" , "/R" , "|A" , "/A" , "\\A"}
+            };
+        this.solucion = "(4,4)(5,6)(5,4)";
+    }
+    
+    public TableroAzar(int fil , int col , int dif){
+        this.filas = fil;
+        this.columnas = col;
+        this.dificultad = dif;
+        this.tablero = generarTablero();
+        this.solucion = resolverTablero();
     }
     
     // Método para resolver el tablero en un número determinado de pasos
@@ -24,26 +39,37 @@ public class TableroAzar {
         return "0";
     }
     
-    public TableroAzar(int fil , int col , int dif){
-        this.filas = fil;
-        this.columnas = col;
-        this.dificultad = dif;
-        this.tablero = generarTablero(fil,col,dif);
-        this.solucion = resolverTablero();
-    }
-    public static String[][] generarTablero(int fila , int column , int dificul){
-        String[][] tablero = new String[fila][column];
+    private String[][] generarTablero(){
+        String[][] t = new String[this.filas][this.columnas];
         
         Random r = new Random();
         String[] colores = {"R","A"};
         String colorAct = colores[r.nextInt(colores.length)];
         String[] simbolos = {"/", "\\", "-", "|"};
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero[0].length; j++) {
-                tablero[i][j] = simbolos[r.nextInt(simbolos.length)]+colorAct;
+        for (int i = 0; i < t.length; i++) {
+            for (int j = 0; j < t[0].length; j++) {
+                t[i][j] = simbolos[r.nextInt(simbolos.length)]+colorAct;
             }
         }
-        return tablero;
+        return t;
+    }
+    
+    public void movimiento(int f , int c){
+        //this.movimientos.add(f+c+"");
+        String color = this.tablero[f][c].charAt(1) + "";
+        switch(this.tablero[f][c].charAt(0)){
+            case '|':
+                for (int j = 0; j < this.filas; j++) {
+                    this.tablero[f][j] = this.tablero[f][j].charAt(0) + color;
+                }
+                break;
+            case '/':
+                break;
+            case '\\':
+                break;
+                
+        }
+       
     }
     
     public String[][] coloresTablero(){
@@ -72,10 +98,10 @@ public class TableroAzar {
             divHoriz += "+---";
         }
         divHoriz += "+";
-        for (int i = 0; i < this.columnas; i++) {
+        for (int i = 0; i < this.filas; i++) {
             int indice = i+1;
             ret += "\n" + divHoriz + "\n" + indice + " " ;
-            for (int j = 0; j < this.filas; j++) {
+            for (int j = 0; j < this.columnas; j++) {
                 ret+= "|" + " " + conCol[i][j] + " ";
             }
             ret += "|";

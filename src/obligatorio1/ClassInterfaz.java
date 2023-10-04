@@ -18,40 +18,28 @@ public class ClassInterfaz {
             System.out.println("2)Usar el tablero predefinido");
             System.out.println("3)Usar un tablero al azar");
             opcion = pedirEntero("\nEliga su opcion (1-3)", 1, 3);
+            TableroAzar tablero;
             switch (opcion) {
                 case 1:
                     System.out.println("Seleccionaste tomar datos del archivo");
                     break;
                 case 2:
                     System.out.println("\nSeleccionaste el tablero predefinido");
-//                    String[][] predefinido = {
-//                        {" ", " ", "1", " ", "2", " ", "3", " ", "4", " ", "5", " ", "6"},
-//                        {" ", "+---+---+---+---+---+---+"},
-//                        {"1", "|", "|", "|", "|", "|", "-", "|", "/", "|", "|", "|", "-", "|"},
-//                        {" ", "+---+---+---+---+---+---+"},
-//                        {"2", "|", "-", "|", "/", "|", "/", "|", "|", "|", "-", "|", "-", "|"},
-//                        {" ", "+---+---+---+---+---+---+"},
-//                        {"3", "|", "-", "|", "-", "|", "|", "|", "-", "|", "/", "|", "-", "|"},
-//                        {" ", "+---+---+---+---+---+---+"},
-//                        {"4", "|", "\\", "|", "-", "|", "|", "|", "\\", "|", "|", "|", "|", "|"},
-//                        {" ", "+---+---+---+---+---+---+"},
-//                        {"5", "|", "\\", "|", "/", "|", "/", "|", "|", "|", "/", "|", "\\", "|"},
-//                        {" ", "+---+---+---+---+---+---+"}};
-//                    mostrarTableroPredefinido(predefinido);
-                    TableroAzar tablero = new TableroAzar();
+                    tablero = new TableroAzar();
                     System.out.println(tablero);
-                    jugar();
+                    jugar(tablero);
                     break;
                 case 3:
                     System.out.println("Seleccionaste el tablero al azar");
                     int filas = pedirEntero("\nEliga la cantidad de filas del tablero: ", 3, 9);
                     int columnas = pedirEntero("\nEliga la cantidad de columnas del tablero: ", 3, 9);
                     int nivel = pedirEntero("\nEliga el nivel del juego: ", 1, 8);
-                    jugar();
+                    tablero = new TableroAzar();
+                    jugar(tablero);
                     break;
             }
         } else {
-            System.out.println("Â¡Hasta luego!");
+            System.out.println("¡Hasta luego!");
         }
 
     }
@@ -89,14 +77,16 @@ public class ClassInterfaz {
         }
     }
 
-    public static void jugar() {
+    public static void jugar(TableroAzar t) {
         Scanner in = new Scanner(System.in);
         System.out.println("Ingrese numero de fila a cambiar");
         int fila = in.nextInt();
         System.out.println("Ingrese numero de columna a cambiar");
         int columna = in.nextInt();
-        System.out.println("Ingrese el color a cambiar");
-        String color = in.nextLine();
+        t.movimiento(fila,columna);
+        System.out.println(t);
+//        System.out.println("Ingrese el color a cambiar");
+//        String color = in.nextLine();
     }
 
     /*Codigo para calcular el tiempo de juego
